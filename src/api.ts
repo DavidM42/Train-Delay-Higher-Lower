@@ -1,20 +1,25 @@
 const isTESTMODE = false;
 const BASE_URL = 'https://v5.db.transport.rest';
 
-async function getDepartures(evaStation: number, duration?: number, when?: Date) {
+async function getDepartures(evaStation: number, duration: number  = 30, when?: Date) {
     // TODO more parameters?
     const url = new URL(`${BASE_URL}/stop/${evaStation}/departures`);
     
     if (duration) {
         url.searchParams.set('duration', duration.toString());
     }
+
     if (when && !isNaN(when.getTime())) {
         url.searchParams.set('when', when.toISOString());
     }
+
+    // cap results to same value always
+    url.searchParams.set('results', '200');
+    
     return (await fetch(url.href)).json();
 }
 
-async function getArrivals(evaStation: number, duration?: number, when?: Date) {
+async function getArrivals(evaStation: number, duration: number = 30, when?: Date) {
     // TODO more parameters?
     const url = new URL(`${BASE_URL}/stops/${evaStation}/arrivals`);
     
@@ -24,6 +29,9 @@ async function getArrivals(evaStation: number, duration?: number, when?: Date) {
     if (when && !isNaN(when.getTime())) {
         url.searchParams.set('when', when.toISOString());
     }
+
+    // cap results to same value always
+    url.searchParams.set('results', '200');
     return (await fetch(url.href)).json();
 }
 
