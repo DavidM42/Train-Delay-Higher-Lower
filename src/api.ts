@@ -27,6 +27,25 @@ async function getArrivals(evaStation: number, duration?: number, when?: Date) {
     return (await fetch(url.href)).json();
 }
 
+async function getTotalArrivalDelay(evaStation: number, duration?: number, when?: Date) {
+    // specify time and pick trips better
+    try {
+        const arrivals = await getArrivals(evaStation,duration,when);
+        let totalDelay = 0;
+        arrivals.forEach(element => {
+            if (!element.delay) {
+                totalDelay += 0;
+            } else {
+                totalDelay += element.delay;
+            }
+        });
+        return Math.round(totalDelay * 100) / 100;
+    } catch(e) {
+        console.error(e);
+        return null;
+    }
+}
+
 async function getMeanArrivalDelay(evaStation: number, duration?: number, when?: Date) {
     // specify time and pick trips better
     try {
@@ -72,4 +91,4 @@ async function getMeanDepartureDelay(evaStation: number, duration?: number, when
 }
 
 
-export { getDepartures, getArrivals, getMeanArrivalDelay, getMeanDepartureDelay };
+export { getDepartures, getArrivals, getTotalArrivalDelay, getMeanArrivalDelay, getMeanDepartureDelay };

@@ -39,7 +39,7 @@ url('{imgLink}') no-repeat center center fixed;"
 			}}
 		>
 			<p class="term-volume__volume">{delay}</p>
-			<p>Minuten Verspätung</p>
+			<p>Minuten Verspätung gesamt</p>
 		</div>
 	{:else}
 		<div

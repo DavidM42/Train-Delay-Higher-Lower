@@ -1,5 +1,5 @@
 import { STATIONS } from './data';
-import { getMeanArrivalDelay } from './api';
+import { getTotalArrivalDelay } from './api';
 import type { DelayInfo } from './typing/types';
 
 export default class StationSelector {
@@ -15,14 +15,14 @@ export default class StationSelector {
      * If invalid will return false if valid will return average mean arrival
      * @param eva Eva number of station to check
      */
-    public async arrivalMeanIfValid(eva: number): Promise<number | false> {
+    public async delayDataIfValid(eva: number): Promise<number | false> {
         if (this.usedCityCodes.includes(eva) || this.disqualifiedCityCodes.includes(eva)) {
             return false;
         }
 
         // const testDate = new Date('2021-03-12');
         // testDate.setHours(23, 30, 30);
-        const delay = await getMeanArrivalDelay(eva);
+        const delay = await getTotalArrivalDelay(eva);
         if (!delay || delay <= 0) {
             // does not work correctly so disqualify for now
             this.disqualifiedCityCodes.push(eva);
@@ -44,7 +44,7 @@ export default class StationSelector {
                 randStationEva = Number('0' + randStationEva)
             }
 
-            const delay = await this.arrivalMeanIfValid(randStationEva);
+            const delay = await this.delayDataIfValid(randStationEva);
 
             if (delay) {
                 return {

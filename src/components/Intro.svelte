@@ -8,7 +8,7 @@
 
 <main>
 	<h1>Zugverspätung higher lower game</h1>
-	<h2>Welcher Bahnhof sammelt gerade mehr Verspätungs-Minuten?</h2>
+	<h2>Welcher Bahnhof sammelt gerade mehr summierte Verspätungs-Minuten mit seinen Ankünften?</h2>
 	<span>Eine spassige Method die Echtzeit Fahrplandaten der Bahn zu nutzen</span>
 	<div class="inlineContainer">
 		<button on:click={start}>Go</button>
