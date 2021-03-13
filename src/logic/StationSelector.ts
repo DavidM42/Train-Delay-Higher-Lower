@@ -1,14 +1,16 @@
-import { STATIONS } from './data';
 import { getTotalArrivalDelay } from './api';
 import type { DelayInfo } from '../typing/types';
+import type { StationMapping } from '../typing/stations';
 
 export default class StationSelector {
-    
+
     private usedCityCodes = [];
     private disqualifiedCityCodes = [];
-    
-    constructor() {
 
+    private stations: StationMapping = {};
+
+    constructor(stations: StationMapping) {
+        this.stations = stations;
     }
 
     /**
@@ -35,9 +37,9 @@ export default class StationSelector {
 
     public async getNextStationArrivalDelay(): Promise<DelayInfo | null> {
         // can't loop more often than we have stationns
-        for (let i = 0; i < Object.keys(STATIONS).length; i++) {
+        for (let i = 0; i < Object.keys(this.stations).length; i++) {
             // still randomize order for challenge and fun
-            let randStationEva = Number(randomKey(STATIONS));
+            let randStationEva = Number(randomKey(this.stations));
 
             // add prepending zero
             if ((randStationEva + '').length === 6) {
@@ -49,8 +51,10 @@ export default class StationSelector {
             if (delay) {
                 return {
                     eva: randStationEva,
-                    name: STATIONS[randStationEva].name,
-                    image: STATIONS[randStationEva].image,
+                    name: this.stations[randStationEva].name,
+                    photoUrl: this.stations[randStationEva].photoUrl,
+                    photographer: this.stations[randStationEva].photographer,
+                    license: this.stations[randStationEva].license,
                     delay: delay
                 };
             }
@@ -62,5 +66,5 @@ export default class StationSelector {
 
 // https://stackoverflow.com/a/37401010
 const randomKey = function (obj) {
-    return Object.keys(obj)[Math.floor(Math.random()*Object.keys(obj).length)]
+    return Object.keys(obj)[Math.floor(Math.random() * Object.keys(obj).length)]
 };

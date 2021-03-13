@@ -1,0 +1,29 @@
+name: Generate & Push stations.json
+
+on: workflow_dispatch
+
+jobs:
+  stations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+      - name: Set up NodeJS 12
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - name: Install requirement with dev deps 🔧
+        run: |
+          npm ci --also=dev
+      - name: Retrieve all stations 🚉
+        run: |
+          npm run stations
+      - name: Commit stations.json
+        run: |
+          git config --global user.name 'StationsBot'
+          git config --global user.email 'stationsbot@davidm42.uber.space'
+          git commit -am "Update of stations.json"
+          git push

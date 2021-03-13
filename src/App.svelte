@@ -2,13 +2,9 @@
 	import StationSelector from "./logic/StationSelector";
 	import Highscore from "./logic/Highscore";
 
-	export let lastCity: string;
-	export let lastDelay: number;
-	export let lastImageLink: string;
+	export let lastStation: DelayInfo;
 
-	export let newCity: string;
-	export let newDelay: number;
-	export let newImageLink: string;
+	export let newStation: DelayInfo;
 
 	let justStarted = true;
 	let failed = false;
@@ -16,7 +12,7 @@
 	let win = false;
 	let loss = false;
 	let chooseActive = true;
-	const selector = new StationSelector();
+	let selector: StationSelector = null;
 
 	import Intro from "./components/Intro.svelte";
 	import GameOver from "./components/GameOver.svelte";
@@ -25,6 +21,8 @@
 	import VersusIcon from "./components/VersusIcon.svelte";
 
 	import { Decision } from "./typing/types";
+	import type { DelayInfo } from "./typing/types";
+	import type { StationMapping } from "./typing/stations";
 
 	const re_start = async () => {
 		score = 0;
@@ -42,13 +40,8 @@
 			return;
 		}
 
-		lastCity = firstDelay.name;
-		lastDelay = firstDelay.delay;
-		lastImageLink = firstDelay.image;
-
-		newCity = secondDelay.name;
-		newDelay = secondDelay.delay;
-		newImageLink = secondDelay.image;
+		lastStation = firstDelay;
+		newStation = secondDelay;
 
 		chooseActive = true;
 	};
@@ -56,10 +49,6 @@
 	const nextGuess = async () => {
 		win = false;
 		loss = false;
-
-		lastCity = newCity;
-		lastDelay = newDelay;
-		lastImageLink = newImageLink;
 
 		const newCalc = await selector.getNextStationArrivalDelay();
 
@@ -69,10 +58,9 @@
 			);
 			return;
 		}
+		lastStation = newStation;
 
-		newCity = newCalc.name;
-		newDelay = newCalc.delay;
-		newImageLink = newCalc.image;
+		newStation = newCalc;
 
 		chooseActive = true;
 	};
@@ -80,11 +68,11 @@
 	const onmessage = (event) => {
 		chooseActive = false;
 		if (event.detail.decision === Decision.HIGHER) {
-			const comparision = newDelay >= lastDelay;
+			const comparision = newStation.delay >= lastStation.delay;
 			win = comparision;
 			loss = !comparision;
 		} else if (event.detail.decision === Decision.LOWER) {
-			const comparision = newDelay <= lastDelay;
+			const comparision = newStation.delay <= lastStation.delay;
 			win = comparision;
 			loss = !comparision;
 		}
@@ -105,13 +93,22 @@
 		}
 	};
 
-	// initial start
-	re_start();
+	const initialize = async () => {
+		try {
+			const station: StationMapping = await (
+				await fetch("/stations.json")).json();
+			selector = new StationSelector(station);
+		} catch (e) {
+			console.error(e);
+			alert("Initialization station load failed");
+		}
+		re_start();
+	};
+
+	initialize();
 </script>
 
 <main>
-	<!-- TODO highscore unten links und bild links für cc by rechts und links -->
-
 	{#if justStarted}
 		<div class="infoContainer">
 			<Intro bind:justStarted />
@@ -122,16 +119,10 @@
 		</div>
 	{:else}
 		<div class="progressionContainer">
-			<LastCity
-				bind:city={lastCity}
-				bind:delay={lastDelay}
-				bind:imgLink={lastImageLink}
-			/>
+			<LastCity bind:station={lastStation} />
 			<VersusIcon bind:win {loss} />
 			<NewCity
-				bind:city={newCity}
-				bind:delay={newDelay}
-				bind:imgLink={newImageLink}
+				bind:station={newStation}
 				bind:chooseActive
 				on:message={onmessage}
 			/>
@@ -139,12 +130,12 @@
 
 		<div id="highScoreContainer">
 			<span class="scoreLine">{Highscore.highscore}</span>
-			<span class="socreLine">Highscore</span>
+			<span class="scoreLine">Highscore</span>
 		</div>
 
 		<div id="scoreContainer">
 			<span class="scoreLine">{score}</span>
-			<span class="socreLine">Punkte</span>
+			<span class="scoreLine">Punkte</span>
 		</div>
 	{/if}
 </main>
@@ -178,16 +169,36 @@
 
 	#highScoreContainer {
 		position: fixed;
-		bottom: 10px;
 		left: 20px;
 		text-align: left;
 	}
 
 	#scoreContainer {
 		position: fixed;
-		bottom: 10px;
 		right: 20px;
 		text-align: right;
+	}
+
+	/* scores on desktops on bottom left and right */
+	@media (min-width: 640px) {
+		#highScoreContainer {
+			bottom: 45px;
+		}
+
+		#scoreContainer {
+			bottom: 45px;
+		}
+	}
+
+	/* on mobile on top left and right  */
+	@media (max-width: 640px) {
+		#highScoreContainer {
+			top: 10px;
+		}
+
+		#scoreContainer {
+			top: 10px;
+		}
 	}
 
 	span.scoreLine {

@@ -3,10 +3,9 @@
 	import fadeScale from "../aesthetic/fade-scale";
 
 	import { Decision } from "../typing/types";
+	import type { DelayInfo } from "../typing/types";
 
-	export let city: string;
-	export let delay: number;
-	export let imgLink: string;
+	export let station: DelayInfo;
 	export let chooseActive: boolean;
 
 	import { createEventDispatcher } from "svelte";
@@ -24,9 +23,9 @@
 
 <main
 	style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-url('{imgLink}') no-repeat center center fixed;"
+url('{station.photoUrl}') no-repeat center center fixed;"
 >
-	<h1>{city}</h1>
+	<h1>{station.name}</h1>
 
 	{#if !chooseActive}
 		<div
@@ -38,12 +37,11 @@ url('{imgLink}') no-repeat center center fixed;"
 				baseScale: 0.5,
 			}}
 		>
-			<p class="term-volume__volume">{delay}</p>
+			<p class="term-volume__volume">{station.delay}</p>
 			<p>Minute(n) Verspätung gesamt</p>
 		</div>
 	{:else}
-		<div
-			class="buttonContainer">
+		<div class="buttonContainer">
 			<!-- 			transition:fadeScale={{
 				delay: 75,
 				duration: 500,
@@ -54,6 +52,11 @@ url('{imgLink}') no-repeat center center fixed;"
 			<button on:click={lower}>Lower</button>
 		</div>
 	{/if}
+
+	<div id="attributionContainer">
+		<span class="attributionLine">{station.photographer}</span>
+		<span class="attributionLine">{station.license}</span>
+	</div>
 </main>
 
 <style>
@@ -91,7 +94,6 @@ url('{imgLink}') no-repeat center center fixed;"
 		min-width: 10vw;
 	}
 
-
 	/* mobile stacked view */
 	@media (max-width: 640px) {
 		main {
@@ -114,5 +116,19 @@ url('{imgLink}') no-repeat center center fixed;"
 		button {
 			font-size: 2.2em;
 		}
+	}
+
+	/* attribution  */
+	#attributionContainer {
+		position: fixed;
+		right: 10px;
+		bottom: 10px;
+		text-align: right;
+	}
+
+	span.attributionLine {
+		display: block;
+		font-size: 0.6em;
+		color: #bebbbb;
 	}
 </style>

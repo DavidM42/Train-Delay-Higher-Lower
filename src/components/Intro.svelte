@@ -51,6 +51,10 @@
 			overflow-y: scroll;
 		}
 
+		h1 {
+			font-size: 2.1em;
+		}
+
 		h2 {
 			font-size: 1.1em;
 		}
