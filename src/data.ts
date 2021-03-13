@@ -5,75 +5,75 @@ export const STATIONS: {[eva: number]: {
 }} = {
     8000105: {
         name: 'Frankfurt (Hbf)',
-        image: '/stations/frankfurt.jpg'
+        image: './stations/frankfurt.jpg'
     },
     8011160: {
         name: 'Berlin Hbf',
-        image: '/stations/berlin.jpg'
+        image: './stations/berlin.jpg'
     },
     8000050: {
         name: 'Bremen Hbf',
-        image: '/stations/bremen.jpg'
+        image: './stations/bremen.jpg'
     },
     8010085: {
         name: 'Dresden Hbf',
-        image: '/stations/dresden.jpg'
+        image: './stations/dresden.jpg'
     },
     8010205: {
         name: 'Leipzig Hbf',
-        image: '/stations/leipzig.jpg'
+        image: './stations/leipzig.jpg'
     },
     8000261: {
         name: 'München Hbf',
-        image: '/stations/muenchen.jpg'
+        image: './stations/muenchen.jpg'
     },
     8000314: {
         name: 'Reutlingen Hbf',
-        image: '/stations/reutlingen.jpg'
+        image: './stations/reutlingen.jpg'
     },
     8000141: {
         name: 'Tübingen Hbf',
-        image: '/stations/tuebingen.jpg'
+        image: './stations/tuebingen.jpg'
     },
     8000260: {
         name: 'Würzburg Hbf',
-        image: '/stations/wuerzburg.jpg'
+        image: './stations/wuerzburg.jpg'
     },
     518342: {
         name: "Mannheim Hbf",
-        image: '/stations/mannheim.jpg'
+        image: './stations/mannheim.jpg'
     },
     102501: {
         name: 'Main Hbf',
-        image: '/stations/mainz.jpg'
+        image: './stations/mainz.jpg'
     },
     8000115: {
         name: 'Fulda Hbf',
-        image: '/stations/fulda.jpg'
+        image: './stations/fulda.jpg'
     },
     8000010: {
         name: 'Asaschaffenburg Hbf',
-        image: '/stations/aschaffenburg.jpg'
+        image: './stations/aschaffenburg.jpg'
     },
     8000150: {
         name: 'Hanau Hbf',
-        image: '/stations/hanau.jpg'
+        image: './stations/hanau.jpg'
     },
     8000085: {
         name: 'Düsseldorf Hbf',
-        image: '/stations/duesseldorf.jpg'
+        image: './stations/duesseldorf.jpg'
     },
     8003200: {
         name: 'Kassel-Wilhelmshöhe',
-        image: '/stations/kassel.jpg'
+        image: './stations/kassel.jpg'
     },
     8000337: {
         name: 'Marburg (Lahn)',
-        image: '/stations/marburg.jpg'
+        image: './stations/marburg.jpg'
     },
     8002549: {
         name: 'Hamburg Hbf',
-        image: '/stations/hamburg.jpg'
+        image: './stations/hamburg.jpg'
     }
 
 }
