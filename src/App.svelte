@@ -79,11 +79,11 @@
 	const onmessage = (event) => {
 		chooseActive = false;
 		if (event.detail.decision === Decision.HIGHER) {
-			const comparision = newDelay > lastDelay;
+			const comparision = newDelay >= lastDelay;
 			win = comparision;
 			loss = !comparision;
 		} else if (event.detail.decision === Decision.LOWER) {
-			const comparision = newDelay < lastDelay;
+			const comparision = newDelay <= lastDelay;
 			win = comparision;
 			loss = !comparision;
 		}
