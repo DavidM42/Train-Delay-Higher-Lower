@@ -39,18 +39,17 @@ url('{imgLink}') no-repeat center center fixed;"
 			}}
 		>
 			<p class="term-volume__volume">{delay}</p>
-			<p>Minuten Verspätung gesamt</p>
+			<p>Minute(n) Verspätung gesamt</p>
 		</div>
 	{:else}
 		<div
-			class="buttonContainer"
-			transition:fadeScale={{
+			class="buttonContainer">
+			<!-- 			transition:fadeScale={{
 				delay: 75,
 				duration: 500,
 				easing: expoOut,
 				baseScale: 0.5,
-			}}
-		>
+			}} -->
 			<button on:click={higher}>Higher</button>
 			<button on:click={lower}>Lower</button>
 		</div>
@@ -73,15 +72,8 @@ url('{imgLink}') no-repeat center center fixed;"
 	}
 
 	.term-volume__volume {
-		font-size: 8.5vh;
-	}
-	.term-volume__volume {
-		font-size: 34px;
+		font-size: 2em;
 		line-height: 1;
-	}
-
-	.term-volume__volume {
-		font-size: 33px;
 		font-weight: 700;
 		color: #fff989;
 		opacity: 1;
@@ -109,7 +101,7 @@ url('{imgLink}') no-repeat center center fixed;"
 		}
 
 		button {
-			font-size: 1.3em;
+			font-size: 1.2em;
 		}
 	}
 

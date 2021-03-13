@@ -10,7 +10,7 @@
 	<h1>{city}</h1>
 	<div class="term-volume">
 		<p class="term-volume__volume">{delay}</p>
-		<p>Minuten Verspätung gesamt</p>
+		<p>Minute(n) Verspätung gesamt</p>
 	</div>
 </main>
 
