@@ -26,7 +26,6 @@
 	main {
 		text-align: center;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 	}
 
@@ -50,6 +49,15 @@
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
+			width: 100%;
+		}
+	}
+
+	/* mobile stacked view */
+	@media (max-width: 640px) {
+		main {
+			height: 50%;
+			width: 100%;
 		}
 	}
 </style>

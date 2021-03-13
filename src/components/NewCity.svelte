@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cubicInOut, cubicOut } from "svelte/easing";
+	import { expoIn, expoOut } from "svelte/easing";
 	import fadeScale from "../aesthetic/fade-scale";
 
 	import { Decision } from "../typing/types";
@@ -34,7 +34,7 @@ url('{imgLink}') no-repeat center center fixed;"
 			transition:fadeScale={{
 				delay: 75,
 				duration: 500,
-				easing: cubicInOut,
+				easing: expoIn,
 				baseScale: 0.5,
 			}}
 		>
@@ -47,7 +47,7 @@ url('{imgLink}') no-repeat center center fixed;"
 			transition:fadeScale={{
 				delay: 75,
 				duration: 500,
-				easing: cubicOut,
+				easing: expoOut,
 				baseScale: 0.5,
 			}}
 		>
@@ -69,7 +69,6 @@ url('{imgLink}') no-repeat center center fixed;"
 	main {
 		text-align: center;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 	}
 
@@ -97,13 +96,31 @@ url('{imgLink}') no-repeat center center fixed;"
 	button {
 		display: block;
 		/* background-color: #333; */
-		font-size: 2.2em;
 		min-width: 10vw;
+	}
+
+
+	/* mobile stacked view */
+	@media (max-width: 640px) {
+		main {
+			height: 50%;
+			width: 100%;
+			max-height: 50%;
+		}
+
+		button {
+			font-size: 1.3em;
+		}
 	}
 
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
+			width: 100%;
+		}
+
+		button {
+			font-size: 2.2em;
 		}
 	}
 </style>

@@ -16,8 +16,14 @@ body {
 
 h1 {
 	/* text-transform: uppercase; */
-	font-size: 4em;
-	font-weight: 100;
+	font-size: 2.5em;
+	font-weight: 200;
+}
+
+@media (min-width: 640px) {
+	h1 {
+		font-size: 4em;
+	}
 }
 
 /* a {

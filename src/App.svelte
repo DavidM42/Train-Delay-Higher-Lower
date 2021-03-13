@@ -1,5 +1,5 @@
 <script lang="ts">
-	import StationSelector from './StationSelector';
+	import StationSelector from "./StationSelector";
 
 	export let lastCity: string;
 	export let lastDelay: number;
@@ -35,7 +35,9 @@
 		const secondDelay = await selector.getNextStationArrivalDelay();
 
 		if (!firstDelay || !secondDelay) {
-			alert('Nicht genügend Bahnhöfe mit Verspätungen konfiguriert für gerade!');
+			alert(
+				"Nicht genügend Bahnhöfe mit Verspätungen konfiguriert für gerade!"
+			);
 			return;
 		}
 
@@ -48,7 +50,7 @@
 		newImageLink = secondDelay.image;
 
 		chooseActive = true;
-	}
+	};
 
 	const nextGuess = async () => {
 		win = false;
@@ -61,7 +63,9 @@
 		const newCalc = await selector.getNextStationArrivalDelay();
 
 		if (!newCalc) {
-			alert('Kein weiterer Bahnhof mit Verspätung konfiguriert für weitere Runde!');
+			alert(
+				"Kein weiterer Bahnhof mit Verspätung konfiguriert für weitere Runde!"
+			);
 			return;
 		}
 
@@ -70,7 +74,7 @@
 		newImageLink = newCalc.image;
 
 		chooseActive = true;
-	}
+	};
 
 	const onmessage = (event) => {
 		chooseActive = false;
@@ -90,9 +94,9 @@
 			setTimeout(() => nextGuess(), 1250);
 		} else {
 			// send to failed screen after 1,5s
-			setTimeout(() => failed = true, 2000);
+			setTimeout(() => (failed = true), 2000);
 		}
-	}
+	};
 
 	// initial start
 	re_start();
@@ -102,18 +106,26 @@
 	<!-- TODO highscore unten links und bild links für cc by rechts und links -->
 
 	{#if justStarted}
-		<Intro bind:justStarted />
+		<div class="infoContainer">
+			<Intro bind:justStarted />
+		</div>
 	{:else if failed}
-		<GameOver score={score} on:click={re_start}></GameOver>
+		<div class="infoContainer">
+			<GameOver {score} on:click={re_start} />
+		</div>
 	{:else}
 		<div class="progressionContainer">
-			<LastCity bind:city={lastCity} bind:delay={lastDelay} bind:imgLink={lastImageLink}/>
-			<VersusIcon bind:win={win} loss={loss}/>
+			<LastCity
+				bind:city={lastCity}
+				bind:delay={lastDelay}
+				bind:imgLink={lastImageLink}
+			/>
+			<VersusIcon bind:win {loss} />
 			<NewCity
 				bind:city={newCity}
 				bind:delay={newDelay}
 				bind:imgLink={newImageLink}
-				bind:chooseActive={chooseActive}
+				bind:chooseActive
 				on:message={onmessage}
 			/>
 		</div>
@@ -130,11 +142,26 @@
 		text-align: center;
 	}
 
+	div.infoContainer {
+		display: flex;
+		height: 100vh;
+		/* horizonatally centered */
+		align-items: center;
+	}
+
 	div.progressionContainer {
 		display: flex;
 		height: 100vh;
-		flex-grow: 1;
-		flex-basis: fill;
+
+		/* flex-grow: 1; */
+		/* flex-basis: fill; */
+	}
+
+	/* under one another on mobile */
+	@media (max-width: 640px) {
+		div.progressionContainer {
+			flex-direction: column;
+		}
 	}
 
 	#scoreContainer {

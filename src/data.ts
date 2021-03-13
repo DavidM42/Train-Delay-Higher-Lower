@@ -52,7 +52,7 @@ export const STATIONS: {[eva: number]: {
         image: './stations/fulda.jpg'
     },
     8000010: {
-        name: 'Asaschaffenburg Hbf',
+        name: 'Aschaffenburg Hbf',
         image: './stations/aschaffenburg.jpg'
     },
     8000150: {
