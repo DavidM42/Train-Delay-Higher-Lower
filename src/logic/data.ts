@@ -44,7 +44,7 @@ export const STATIONS: {[eva: number]: {
         image: './stations/mannheim.jpg'
     },
     102501: {
-        name: 'Main Hbf',
+        name: 'Mainz Hbf',
         image: './stations/mainz.jpg'
     },
     8000115: {

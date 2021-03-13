@@ -1,5 +1,6 @@
 <script lang="ts">
-	import StationSelector from "./StationSelector";
+	import StationSelector from "./logic/StationSelector";
+	import Highscore from "./logic/Highscore";
 
 	export let lastCity: string;
 	export let lastDelay: number;
@@ -90,6 +91,12 @@
 
 		if (win) {
 			score += 1;
+
+			// if new highscore update it
+			if (score > Highscore.highscore) {
+				Highscore.highscore = score;
+			}
+
 			// nextGuess after 1,5s
 			setTimeout(() => nextGuess(), 1250);
 		} else {
@@ -130,6 +137,11 @@
 			/>
 		</div>
 
+		<div id="highScoreContainer">
+			<span class="scoreLine">{Highscore.highscore}</span>
+			<span class="socreLine">Highscore</span>
+		</div>
+
 		<div id="scoreContainer">
 			<span class="scoreLine">{score}</span>
 			<span class="socreLine">Punkte</span>
@@ -164,22 +176,32 @@
 		}
 	}
 
+	#highScoreContainer {
+		position: fixed;
+		bottom: 10px;
+		left: 20px;
+		text-align: left;
+	}
+
 	#scoreContainer {
 		position: fixed;
 		bottom: 10px;
 		right: 20px;
-
 		text-align: right;
-		font-size: 1.5em;
 	}
 
 	span.scoreLine {
 		display: block;
+		font-size: 1.2em;
 	}
 
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
+		}
+
+		span.scoreLine {
+			font-size: 1.5em;
 		}
 	}
 </style>

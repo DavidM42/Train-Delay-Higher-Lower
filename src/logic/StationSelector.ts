@@ -1,6 +1,6 @@
 import { STATIONS } from './data';
 import { getTotalArrivalDelay } from './api';
-import type { DelayInfo } from './typing/types';
+import type { DelayInfo } from '../typing/types';
 
 export default class StationSelector {
     
