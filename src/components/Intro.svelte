@@ -45,6 +45,21 @@
 		margin-top: 25px; 
 	}
 
+	@media (max-width: 640px) {
+
+		main {
+			overflow-y: scroll;
+		}
+
+		h2 {
+			font-size: 1.1em;
+		}
+
+		button {
+			font-size: 1.7em;
+		}
+	}
+
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
