@@ -18,7 +18,7 @@
 <style>
 	:global(body) {
 		background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-			url("/bahntafel.jpg") no-repeat center center fixed;
+			url("./bahntafel.jpg") no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;

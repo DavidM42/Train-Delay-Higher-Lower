@@ -108,7 +108,7 @@
 	}
 
 	.loss .versus-block__icon {
-		background-image: url(/cross.svg);
+		background-image: url('./cross.svg');
 	}
 
 	/* win */
@@ -118,6 +118,6 @@
 	}
 
 	.win .versus-block__icon {
-		background-image: url(/tick.svg);
+		background-image: url('./tick.svg');
 	}
 </style>
