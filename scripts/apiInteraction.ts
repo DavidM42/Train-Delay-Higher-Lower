@@ -1,5 +1,9 @@
 const photoApiKey = process.env.STATION_PHOTO_API_KEY;
 
+if (!photoApiKey) {
+    throw Error('Missing photoApi key. Please ensure the env var STATION_PHOTO_API_KEY is set');
+}
+
 import fetch from 'node-fetch';
 import { PhotoItem, StationResponse } from './types';
 
@@ -9,11 +13,22 @@ const getPhotoItems = async (): Promise<PhotoItem[]> => {
         'Authorization': `Bearer ${photoApiKey}`
     };
 
-    const stationsResponse = await fetch(getDeStationsUrl, {
-        headers: headers
-    });
-    const stationsJson: PhotoItem[] = await stationsResponse.json();
-    return stationsJson;
+    try {
+        const stationsResponse = await fetch(getDeStationsUrl, {
+            headers: headers
+        });
+
+        const stationsJson: PhotoItem[] = await stationsResponse.json();
+
+        if ((stationsJson as any).error) {
+            console.warn(stationsJson);
+            throw Error('Getting stations from db failed!');
+        }
+        return stationsJson;
+    } catch(e) {
+        console.error('Getting stations from db failed!');
+        throw e;
+    }
 };
 
 

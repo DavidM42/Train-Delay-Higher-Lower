@@ -3,4 +3,6 @@
 
 scripts/*.js
 
+keys.env
+
 .DS_Store

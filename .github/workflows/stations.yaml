@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
       - name: Set up NodeJS 12
@@ -20,7 +20,9 @@ jobs:
           npm ci --also=dev
       - name: Retrieve all stations 🚉
         run: |
-          npm run stations
+          npm run stations:ci
+        env:
+          STATION_PHOTO_API_KEY: ${{ secrets.STATION_PHOTO_API_KEY }}
       - name: Commit stations.json
         run: |
           git config --global user.name 'StationsBot'
