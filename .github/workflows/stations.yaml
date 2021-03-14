@@ -10,7 +10,8 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
       - name: Set up NodeJS 12
         uses: actions/setup-node@v2
         with:
@@ -25,7 +26,11 @@ jobs:
           STATION_PHOTO_API_KEY: ${{ secrets.STATION_PHOTO_API_KEY }}
       - name: Commit stations.json
         run: |
-          git config --global user.name 'StationsBot'
-          git config --global user.email 'stationsbot@davidm42.uber.space'
-          git commit -am "Update of stations.json"
-          git push
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Update of stations.json" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
