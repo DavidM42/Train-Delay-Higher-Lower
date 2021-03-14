@@ -96,7 +96,7 @@
 	const initialize = async () => {
 		try {
 			const station: StationMapping = await (
-				await fetch("/stations.json")).json();
+				await fetch("./stations.json")).json();
 			selector = new StationSelector(station);
 		} catch (e) {
 			console.error(e);
