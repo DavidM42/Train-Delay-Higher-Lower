@@ -2,7 +2,7 @@
 	export let score: number;
 </script>
 
-<main>
+<page>
 	<h1>Dein Ergebnis</h1>
 	<h2>{score} Punkte</h2>
 
@@ -17,7 +17,7 @@
 	<div class="inlineContainer">
 		<button on:click>Neustart!</button>
 	</div>
-</main>
+</page>
 
 <style>
 	:global(body) {
@@ -29,7 +29,7 @@
 		background-size: cover;
 	}
 
-	main {
+	page {
 		text-align: center;
 		padding: 1em;
 		max-width: 240px;
@@ -56,7 +56,7 @@
 	}
 
 	@media (min-width: 640px) {
-		main {
+		page {
 			max-width: none;
 		}
 	}

@@ -6,14 +6,14 @@
 	}
 </script>
 
-<main>
+<page>
 	<h1>Zugverspätung higher lower game</h1>
 	<h2>Welcher Bahnhof sammelt gerade mehr summierte Verspätungs-Minuten mit seinen Ankünften?</h2>
 	<span>Eine spassige Method die Echtzeit Fahrplandaten der Bahn zu nutzen</span>
 	<div class="inlineContainer">
 		<button on:click={start}>Go</button>
 	</div>
-</main>
+</page>
 
 <style>
 	:global(body) {
@@ -25,7 +25,7 @@
 		background-size: cover;
 	}
 
-	main {
+	page {
 		text-align: center;
 		padding: 1em;
 		max-width: 240px;
@@ -47,7 +47,7 @@
 
 	@media (max-width: 640px) {
 
-		main {
+		page {
 			overflow-y: scroll;
 		}
 
@@ -65,7 +65,7 @@
 	}
 
 	@media (min-width: 640px) {
-		main {
+		page {
 			max-width: none;
 		}
 	}

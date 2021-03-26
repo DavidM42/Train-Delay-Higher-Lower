@@ -3,14 +3,14 @@
 	export let loss: boolean;
 </script>
 
-<main>
+<page>
 	<div class:win class:loss class={`versus-block`}>
 		<div class="versus-block__text">vs</div>
 		<div class="versus-block__overlay" />
 		<div class="versus-block__icon" />
 		<div />
 	</div>
-</main>
+</page>
 
 <style>
 	/* TODO write own design not copy original */

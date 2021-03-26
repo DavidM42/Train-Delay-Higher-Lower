@@ -108,7 +108,7 @@
 	initialize();
 </script>
 
-<main>
+<page>
 	{#if justStarted}
 		<div class="infoContainer">
 			<Intro bind:justStarted />
@@ -138,10 +138,10 @@
 			<span class="scoreLine">Punkte</span>
 		</div>
 	{/if}
-</main>
+</page>
 
 <style>
-	main {
+	page {
 		text-align: center;
 	}
 
@@ -207,7 +207,7 @@
 	}
 
 	@media (min-width: 640px) {
-		main {
+		page {
 			max-width: none;
 		}
 

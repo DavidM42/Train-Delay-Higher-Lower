@@ -21,7 +21,7 @@
 	}
 </script>
 
-<main
+<page
 	style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
 url('{station.photoUrl}') no-repeat center center fixed;"
 >
@@ -57,10 +57,10 @@ url('{station.photoUrl}') no-repeat center center fixed;"
 		<span class="attributionLine">{station.photographer}</span>
 		<span class="attributionLine">{station.license}</span>
 	</div>
-</main>
+</page>
 
 <style>
-	main {
+	page {
 		-webkit-background-size: cover !important;
 		-moz-background-size: cover !important;
 		-o-background-size: cover !important;
@@ -68,7 +68,7 @@ url('{station.photoUrl}') no-repeat center center fixed;"
 		flex-grow: 1;
 	}
 
-	main {
+	page {
 		text-align: center;
 		padding: 1em;
 		margin: 0 auto;
@@ -96,7 +96,7 @@ url('{station.photoUrl}') no-repeat center center fixed;"
 
 	/* mobile stacked view */
 	@media (max-width: 640px) {
-		main {
+		page {
 			height: 50%;
 			width: 100%;
 			max-height: 50%;
@@ -108,7 +108,7 @@ url('{station.photoUrl}') no-repeat center center fixed;"
 	}
 
 	@media (min-width: 640px) {
-		main {
+		page {
 			max-width: none;
 			width: 100%;
 		}
