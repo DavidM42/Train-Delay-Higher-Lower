@@ -28,6 +28,9 @@
     "typescript": "^4.0.0"
   },
   "dependencies": {
+    "@capacitor/android": "^2.4.7",
+    "@capacitor/cli": "^2.4.7",
+    "@capacitor/core": "^2.4.7",
     "sirv-cli": "^1.0.0"
   }
 }

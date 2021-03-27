@@ -16,4 +16,10 @@ npm run dev
 
 Navigate to [localhost:5000](http://localhost:5000). You should see the website running with live reload.
 
+## Android App
+
+I basically followed [this capacitor tutorial](https://capacitorjs.com/docs/android) and the only real hiccup was installing **Android SDK 29** not the newest Android SDK 30 because Capacitor builds for this older SDK.
+
+## See more
+
 For more info about the used web framework _svelte_ see [this README](https://github.com/sveltejs/template/blob/master/README.md)

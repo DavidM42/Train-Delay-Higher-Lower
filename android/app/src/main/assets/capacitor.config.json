@@ -1,0 +1,14 @@
+{
+  "appId": "com.merzlabs.train.delay",
+  "appName": "train-delay-higher-lower",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "public",
+  "linuxAndroidStudioPath": "/opt/android-studio-4.1/android-studio/bin/studio.sh",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
