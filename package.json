@@ -8,7 +8,9 @@
     "start": "sirv public",
     "validate": "svelte-check",
     "stations:ci": "tsc scripts/*.ts && node scripts/compileStations.js",
-    "stations": "STATION_PHOTO_API_KEY=$(grep STATION_PHOTO_API_KEY keys.env | cut -d '=' -f2) npm run stations:ci"
+    "stations": "STATION_PHOTO_API_KEY=$(grep STATION_PHOTO_API_KEY keys.env | cut -d '=' -f2) npm run stations:ci",
+    "android:sync": "npm run build && npx cap sync",
+    "android:open": "npx cap open android"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
