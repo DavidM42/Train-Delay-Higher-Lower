@@ -1,6 +1,8 @@
 /node_modules/
 /public/build/
 
+android/
+
 scripts/*.js
 
 keys.env
