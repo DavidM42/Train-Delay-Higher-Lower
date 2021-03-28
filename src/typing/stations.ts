@@ -1,7 +1,7 @@
 // copied in scripts types too
 interface InternStationFormat {
     name: string,
-    photoUrl: string,
+    photoName: string,
     photographer: string
     license: string
 };

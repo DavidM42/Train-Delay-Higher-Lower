@@ -1,7 +1,8 @@
 const fs = require('fs');
 
 import { getPhotoItems, getStation, getEva } from './apiInteraction';
-import { PhotoItem, InternStationFormat } from './types';
+import { downloadFile } from './imageSaving';
+import { PhotoItem, InternalStationFormat } from './types';
 
 // empirical found value -> fulda is 343
 // want stations around that important not less so 300
@@ -17,7 +18,7 @@ const createStationsJson = async () => {
     const relevantPhotos: PhotoItem[] = [];
 
     // test settings
-    // const allLength = 50;
+    // const allLength = 150;
 
     const allLength = photos.length;
     for (let i = 0; i < allLength; i++) {
@@ -56,10 +57,18 @@ const createStationsJson = async () => {
         if (seenNames.includes(element.name)) {
             console.log('Duplicate stations name ' + element.name);
         } else {
+            const urlSplit = element.photoUrl.split('/');
+            const fileName = urlSplit[urlSplit.length -1];
+
+            // also download and cache image for faster use in app
+            // and in web cdn load faster than bahn api
+            downloadFile(element.photoUrl, `public/station-images/${fileName}`);
+            console.log(`Downloaded ${fileName} from ${element.photoUrl}`);
+
             // create internal format station
-            const intern: InternStationFormat = {
+            const intern: InternalStationFormat = {
                 name: element.name,
-                photoUrl: element.photoUrl,
+                photoName: fileName,
                 photographer: element.photographer,
                 license: element.license,
             };

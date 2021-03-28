@@ -33,9 +33,9 @@ export interface StationResponse {
 }
 
 // copied in types of source also 
-export interface InternStationFormat {
+export interface InternalStationFormat {
     name: string,
-    photoUrl: string,
+    photoName: string,
     photographer: string
     license: string
 }

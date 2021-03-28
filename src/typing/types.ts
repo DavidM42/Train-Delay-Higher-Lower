@@ -7,7 +7,7 @@ export interface DelayInfo {
     name: string,
     eva: number,
     delay: number,
-    photoUrl: string,
+    photoName: string,
     photographer: string
     license: string
 };
