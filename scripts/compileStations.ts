@@ -18,9 +18,9 @@ const createStationsJson = async () => {
     const relevantPhotos: PhotoItem[] = [];
 
     // test settings
-    const allLength = 150;
+    // const allLength = 150;
 
-    // const allLength = photos.length;
+    const allLength = photos.length;
     for (let i = 0; i < allLength; i++) {
         const element = photos[i];
         
