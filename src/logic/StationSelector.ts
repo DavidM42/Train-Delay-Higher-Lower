@@ -52,7 +52,7 @@ export default class StationSelector {
                 return {
                     eva: randStationEva,
                     name: this.stations[randStationEva].name,
-                    photoUrl: this.stations[randStationEva].photoUrl,
+                    photoName: this.stations[randStationEva].photoName,
                     photographer: this.stations[randStationEva].photographer,
                     license: this.stations[randStationEva].license,
                     delay: delay
