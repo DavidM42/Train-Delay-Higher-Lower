@@ -23,7 +23,7 @@
 
 <page
 	style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-url('./station-images/{station.photoName}') no-repeat center center fixed;"
+url('station-images/{station.photoName}') no-repeat center center fixed;"
 >
 	<h1>{station.name}</h1>
 
