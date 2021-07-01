@@ -2,9 +2,9 @@
 	import StationSelector from "./logic/StationSelector";
 	import Highscore from "./logic/Highscore";
 
-	export let lastStation: DelayInfo;
+	let lastStation: DelayInfo;
 
-	export let newStation: DelayInfo;
+	let newStation: DelayInfo;
 
 	let justStarted = true;
 	let failed = false;
@@ -119,13 +119,15 @@
 		</div>
 	{:else}
 		<div class="progressionContainer">
-			<LastCity bind:station={lastStation} />
-			<VersusIcon bind:win {loss} />
-			<NewCity
-				bind:station={newStation}
-				bind:chooseActive
-				on:message={onmessage}
-			/>
+			{#if lastStation && newStation}
+				<LastCity bind:station={lastStation} />
+				<VersusIcon bind:win {loss} />
+				<NewCity
+					bind:station={newStation}
+					bind:chooseActive
+					on:message={onmessage}
+				/>
+			{/if}
 		</div>
 
 		<div id="highScoreContainer">
