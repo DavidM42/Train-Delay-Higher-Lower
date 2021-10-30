@@ -9,8 +9,15 @@ export default class StationSelector {
 
     private stations: StationMapping = {};
 
+    /**
+     * Contains Map of promises to get DelayInfo (effectively innerNextStationDelay method return).
+     * Mapped via randomId to later remove from cache after retrieving result.
+     */
+    private stationDelayInfoPromiseCache = new Map<number, Promise<DelayInfo | null>>();
+
     constructor(stations: StationMapping) {
         this.stations = stations;
+        this.replenishNextStationPromiseCache();
     }
 
     /**
@@ -35,7 +42,11 @@ export default class StationSelector {
         return delay;
     }
 
-    public async getNextStationArrivalDelay(): Promise<DelayInfo | null> {
+    /**
+     * Inner raw method to get next station delay.
+     * Used by outwards facing public method integrating cache of completed requests
+     */
+    private async innerNextStationDelay(): Promise<DelayInfo | null> {
         // can't loop more often than we have stationns
         for (let i = 0; i < Object.keys(this.stations).length; i++) {
             // still randomize order for challenge and fun
@@ -59,6 +70,35 @@ export default class StationSelector {
                 };
             }
         }
+    }
+
+    private replenishNextStationPromiseCache() {
+        const containedLength = Object.keys(this.stationDelayInfoPromiseCache).length;
+
+        if (containedLength > 5) {
+            return;
+        }
+
+        const missing = 5 - containedLength;
+        for (let i = 0; i < missing; i++) {
+            // random number between 1 and 1000 hopefully no collisions in this range
+            const randomCacheId = Math.floor(Math.random() * 1000);
+            this.stationDelayInfoPromiseCache.set(randomCacheId, this.innerNextStationDelay());
+        }
+    }
+
+    /**
+     * Outwards facing method to get new stations with pre loaded delay infos
+     */
+    public async getNextStationArrivalDelay(): Promise<DelayInfo | null> {
+        // race promises, delete retrieved one from cache, replenish cache with new ones, return retrieved info
+        const racePromise = Promise.race(this.stationDelayInfoPromiseCache);
+        const resolvedRacePromise = await racePromise;
+        const [cacheUuid, nextStationDelayInfo] = resolvedRacePromise;
+
+        this.stationDelayInfoPromiseCache.delete(cacheUuid);
+        this.replenishNextStationPromiseCache();
+        return nextStationDelayInfo;
     }
 }
 
