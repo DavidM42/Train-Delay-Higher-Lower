@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { DelayInfo } from "../typing/types";
+	import type { DelayInfo } from '../typing/types';
 	interface Props {
 		station: DelayInfo;
 	}
@@ -33,8 +33,12 @@
 
 	page {
 		text-align: center;
-		padding: 1em;
+		padding-top: 3em;
 		margin: 0 auto;
+	}
+
+	h1 {
+		padding: 0px 0.5em;
 	}
 
 	.term-volume__volume {
@@ -66,6 +70,10 @@
 		page {
 			height: 50%;
 			width: 100%;
+		}
+
+		h1 {
+			font-size: 2em;
 		}
 	}
 

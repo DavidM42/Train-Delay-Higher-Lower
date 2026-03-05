@@ -32,12 +32,17 @@
 		background: #fff;
 		left: 50%;
 		top: 50%;
-		-webkit-transform: translate(-50%, 110%);
-		-ms-transform: translate(-50%, 110%);
-		transform: translate(-50%, 110%);
+		transform: translate(-50%, -50%);
 		display: table;
 		text-transform: uppercase;
 		overflow: hidden;
+	}
+
+	/* desktop override to position lower */
+	@media (min-width: 640px) {
+		.versus-block {
+			transform: translate(-50%, 140%);
+		}
 	}
 
 	.versus-block__text {

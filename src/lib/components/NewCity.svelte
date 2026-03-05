@@ -44,17 +44,15 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 			<p>Minute(n) Verspätung gesamt</p>
 		</div>
 	{:else}
-		<div class="buttonOuterContainer">
-			<div class="buttonContainer">
-				<!-- 			transition:fadeScale|global={{
+		<div class="buttonContainer">
+			<!-- transition:fadeScale|global={{
 				delay: 75,
 				duration: 500,
 				easing: expoOut,
 				baseScale: 0.5,
 				}} -->
-				<button onclick={higher}>Higher</button>
-				<button onclick={lower}>Lower</button>
-			</div>
+			<button onclick={higher}>Higher</button>
+			<button onclick={lower}>Lower</button>
 		</div>
 	{/if}
 
@@ -75,8 +73,12 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 
 	page {
 		text-align: center;
-		padding: 1em;
+		padding-top: 2.5em;
 		margin: 0 auto;
+	}
+
+	h1 {
+		padding: 0px 0.5em;
 	}
 
 	.term-volume__volume {
@@ -89,15 +91,7 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 		margin-bottom: 10px;
 	}
 
-	div.buttonOuterContainer {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
-
 	div.buttonContainer {
-		position: absolute;
-		bottom: 30%;
 		display: inline-block;
 	}
 
@@ -118,6 +112,17 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 		button {
 			font-size: 1.2em;
 		}
+
+		div.buttonContainer {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 15%;
+		}
+
+		h1 {
+			font-size: 2em;
+		}
 	}
 
 	@media (min-width: 640px) {
@@ -128,6 +133,11 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 
 		button {
 			font-size: 2.2em;
+		}
+		div.buttonContainer {
+			position: absolute;
+			transform: translateX(-50%);
+			bottom: 30%;
 		}
 	}
 
