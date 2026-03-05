@@ -1,27 +1,11 @@
-// import { createClient } from '@motis-project/motis-fptf-client';
 import { createClient } from 'db-vendo-client';
-// import { profile as compatProfile } from '@motis-project/motis-fptf-client/p/compat/index.js';
 import { profile as dbNavProfile } from 'db-vendo-client/p/db/index.js';
 
 // const isTESTMODE = false;
 
 // TODO domain
 const userAgent = 'train-delay-higher-lower';
-// const client = createClient(compatProfile, userAgent);
 const client = createClient(dbNavProfile, userAgent, { enrichStations: false });
-
-/*
-Not needed anymore
-function delayCalc(when: string, plannedWhen: string) {
-    if (!when || !plannedWhen) {
-        return null;
-    }
-
-    const diff = Math.abs((new Date(when) as any) -(new Date(plannedWhen) as any));
-    const minutes = Math.floor((diff/1000)/60);
-    return minutes;
-}
-*/
 
 async function getDepartures(evaStation: number, duration: number = 30, when?: Date) {
 	const opts = {} as any;
