@@ -3,7 +3,7 @@
 This repo is for my weekend hackathon project to implement a higher lower style game with realtime data.
 You have to guess which of the shown train stations currently has more combined delay minutes across all its trains arriving in the next 30 minutes.
 
-Check it out on [david.merz.dev/Train-Delay-Higher-Lower/](https://train-delay-higher-lower.davidmerz.workers.dev/)
+Check it out on [train-delay-higher-lower.davidmerz.workers.dev/](https://train-delay-higher-lower.davidmerz.workers.dev/)
 
 ## Developing
 
