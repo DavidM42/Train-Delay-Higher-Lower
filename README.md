@@ -5,15 +5,25 @@ You have to guess which of the shown train stations currently has more combined 
 
 Check it out on [david.merz.dev/Train-Delay-Higher-Lower/](https://david.merz.dev/Train-Delay-Higher-Lower/)
 
-## Locally develop yourself
+## Developing
 
-Install the dependencies and run it...
+Install dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-```bash
-npm install
+```sh
 npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see the website running with live reload.
+## Building
 
-For more info about the used web framework _svelte_ see [this README](https://github.com/sveltejs/template/blob/master/README.md)
+To create a production version of your app:
+
+```sh
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

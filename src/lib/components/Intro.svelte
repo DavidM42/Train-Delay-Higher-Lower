@@ -12,7 +12,7 @@
 
 <page>
 	<h1>Zugverspätung higher lower</h1>
-	<h2>Welcher Bahnhof sammelt zurzeit mehr Ankunfts-Verspätungs-Minuten?</h2>
+	<h2>Welcher Bahnhof sammelt in der nächsten Stunde mehr Ankunfts-Verspätungs-Minuten?</h2>
 	<span>Eine spassige Method die Echtzeit Fahrplandaten der Bahn zu nutzen</span>
 	<div class="inlineContainer">
 		<button onclick={start}>Go</button>
@@ -21,8 +21,9 @@
 
 <style>
 	:global(body) {
-		background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-			url("../bahntafel.jpg") no-repeat center center fixed;
+		background:
+			linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+			url('../bahntafel.jpg') no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -46,11 +47,10 @@
 		min-width: 10vw;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 25px; 
+		margin-top: 25px;
 	}
 
 	@media (max-width: 640px) {
-
 		page {
 			overflow-y: scroll;
 		}

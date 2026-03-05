@@ -1,10 +1,9 @@
 <script lang="ts">
-	import StationSelector from "./logic/StationSelector";
-	import Highscore from "./logic/Highscore";
+	import Highscore from '$lib/logic/Highscore';
+	let { data } = $props();
 
-	let lastStation: DelayInfo = $state();
-
-	let newStation: DelayInfo = $state();
+	let lastStation: DelayInfo | undefined = $state();
+	let newStation: DelayInfo | undefined = $state();
 
 	let justStarted = $state(true);
 	let failed = $state(false);
@@ -12,17 +11,29 @@
 	let win = $state(false);
 	let loss = $state(false);
 	let chooseActive = $state(true);
-	let selector: StationSelector = null;
 
-	import Intro from "./components/Intro.svelte";
-	import GameOver from "./components/GameOver.svelte";
-	import LastCity from "./components/LastCity.svelte";
-	import NewCity from "./components/NewCity.svelte";
-	import VersusIcon from "./components/VersusIcon.svelte";
+	import GameOver from '$lib/components/GameOver.svelte';
+	import Intro from '$lib/components/Intro.svelte';
+	import LastCity from '$lib/components/LastCity.svelte';
+	import NewCity from '$lib/components/NewCity.svelte';
+	import VersusIcon from '$lib/components/VersusIcon.svelte';
 
-	import { Decision } from "./typing/types";
-	import type { DelayInfo } from "./typing/types";
-	import type { StationMapping } from "./typing/stations";
+	import { getNextStationArrivalDelay } from '$lib/logic/StationSelector.js';
+	import type { DelayInfo } from '$lib/typing/types';
+	import { Decision } from '$lib/typing/types';
+
+	/**
+	 * Uses variables in here to call outside logic function.
+	 * Returns next station delay info to use in game and also triggers replenishing of cache for next stations.
+	 */
+	function getNext() {
+		return getNextStationArrivalDelay(
+			data.stationMap,
+			data.stationDelayInfoPromiseCache,
+			data.usedCityCodes,
+			data.disqualifiedCityCodes
+		);
+	}
 
 	const re_start = async () => {
 		score = 0;
@@ -30,13 +41,12 @@
 		loss = false;
 		win = false;
 
-		const firstDelay = await selector.getNextStationArrivalDelay();
-		const secondDelay = await selector.getNextStationArrivalDelay();
+		const firstDelay = await getNext();
+		const secondDelay = await getNext();
 
 		if (!firstDelay || !secondDelay) {
-			alert(
-				"Nicht genügend Bahnhöfe mit Verspätungen konfiguriert für gerade!"
-			);
+			console.warn('Not enough stations with delay configured for start');
+			// alert('Nicht genügend Bahnhöfe mit Verspätungen konfiguriert für gerade!');
 			return;
 		}
 
@@ -50,12 +60,11 @@
 		win = false;
 		loss = false;
 
-		const newCalc = await selector.getNextStationArrivalDelay();
+		const newCalc = await getNext();
 
 		if (!newCalc) {
-			alert(
-				"Kein weiterer Bahnhof mit Verspätung konfiguriert für weitere Runde!"
-			);
+			console.warn('Not enough stations with delay configured for next round');
+			// alert('Kein weiterer Bahnhof mit Verspätung konfiguriert für weitere Runde!');
 			return;
 		}
 		lastStation = newStation;
@@ -93,19 +102,7 @@
 		}
 	};
 
-	const initialize = async () => {
-		try {
-			const station: StationMapping = await (
-				await fetch("./stations.json")).json();
-			selector = new StationSelector(station);
-		} catch (e) {
-			console.error(e);
-			alert("Initialization station load failed");
-		}
-		re_start();
-	};
-
-	initialize();
+	re_start();
 </script>
 
 <page>
@@ -122,11 +119,7 @@
 			{#if lastStation && newStation}
 				<LastCity bind:station={lastStation} />
 				<VersusIcon bind:win {loss} />
-				<NewCity
-					bind:station={newStation}
-					bind:chooseActive
-					on:message={onmessage}
-				/>
+				<NewCity bind:station={newStation} bind:chooseActive on:message={onmessage} />
 			{/if}
 		</div>
 

@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { expoIn, expoOut } from "svelte/easing";
-	import fadeScale from "../aesthetic/fade-scale";
+	import { expoIn } from 'svelte/easing';
+	import fadeScale from '../aesthetic/fade-scale';
 
-	import { Decision } from "../typing/types";
-	import type { DelayInfo } from "../typing/types";
+	import type { DelayInfo } from '../typing/types';
+	import { Decision } from '../typing/types';
 
-
-	import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher } from 'svelte';
 	interface Props {
 		station: DelayInfo;
 		chooseActive: boolean;
@@ -15,12 +14,12 @@
 	let { station, chooseActive = $bindable() }: Props = $props();
 	const dispatch = createEventDispatcher();
 
-	function higher(node) {
-		dispatch("message", { decision: Decision.HIGHER });
+	function higher() {
+		dispatch('message', { decision: Decision.HIGHER });
 		chooseActive = false;
 	}
-	function lower(node) {
-		dispatch("message", { decision: Decision.LOWER });
+	function lower() {
+		dispatch('message', { decision: Decision.LOWER });
 		chooseActive = false;
 	}
 </script>
@@ -38,22 +37,24 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 				delay: 75,
 				duration: 500,
 				easing: expoIn,
-				baseScale: 0.5,
+				baseScale: 0.5
 			}}
 		>
 			<p class="term-volume__volume">{station.delay}</p>
 			<p>Minute(n) Verspätung gesamt</p>
 		</div>
 	{:else}
-		<div class="buttonContainer">
-			<!-- 			transition:fadeScale|global={{
+		<div class="buttonOuterContainer">
+			<div class="buttonContainer">
+				<!-- 			transition:fadeScale|global={{
 				delay: 75,
 				duration: 500,
 				easing: expoOut,
 				baseScale: 0.5,
-			}} -->
-			<button onclick={higher}>Higher</button>
-			<button onclick={lower}>Lower</button>
+				}} -->
+				<button onclick={higher}>Higher</button>
+				<button onclick={lower}>Lower</button>
+			</div>
 		</div>
 	{/if}
 
@@ -88,7 +89,15 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 		margin-bottom: 10px;
 	}
 
+	div.buttonOuterContainer {
+		height: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
 	div.buttonContainer {
+		position: absolute;
+		bottom: 30%;
 		display: inline-block;
 	}
 

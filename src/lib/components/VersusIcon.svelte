@@ -32,9 +32,9 @@
 		background: #fff;
 		left: 50%;
 		top: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, 110%);
+		-ms-transform: translate(-50%, 110%);
+		transform: translate(-50%, 110%);
 		display: table;
 		text-transform: uppercase;
 		overflow: hidden;
@@ -55,7 +55,7 @@
 
 	.versus-block__overlay {
 		position: absolute;
-		content: " ";
+		content: ' ';
 		bottom: 0;
 		left: 0;
 		width: 100%;
@@ -92,12 +92,12 @@
 		opacity: 1;
 		-webkit-animation-fill-mode: forwards;
 		animation-fill-mode: forwards;
-		-webkit-animation: pop-in 0.3s cubic-bezier(0.24, -0.17, 0.45, 1.99)
-			0.5s;
+		-webkit-animation: pop-in 0.3s cubic-bezier(0.24, -0.17, 0.45, 1.99) 0.5s;
 		animation: pop-in 0.3s cubic-bezier(0.24, -0.17, 0.45, 1.99) 0.5s;
 	}
 
-	.win,.loss {
+	.win,
+	.loss {
 		-webkit-animation: pop-out 0.2s ease-out 1.2s;
 		animation: pop-out 0.2s ease-out 1.2s;
 		animation-fill-mode: none;
@@ -112,7 +112,7 @@
 	}
 
 	.loss .versus-block__icon {
-		background-image: url('../cross.svg');
+		background-image: url('./cross.svg');
 	}
 
 	/* win */
@@ -122,6 +122,6 @@
 	}
 
 	.win .versus-block__icon {
-		background-image: url('../tick.svg');
+		background-image: url('./tick.svg');
 	}
 </style>

@@ -62,7 +62,7 @@ const createStationsJson = async () => {
 
             // also download and cache image for faster use in app
             // and in web cdn load faster than bahn api
-            downloadFile(element.photoUrl, `public/station-images/${fileName}`);
+            downloadFile(element.photoUrl, `static/station-images/${fileName}`);
             console.log(`Downloaded ${fileName} from ${element.photoUrl}`);
 
             // create internal format station
@@ -78,7 +78,7 @@ const createStationsJson = async () => {
     }
 
     console.log(JSON.stringify(saveStations));
-    fs.writeFileSync('public/stations.json', JSON.stringify(saveStations));
+    fs.writeFileSync('static/stations.json', JSON.stringify(saveStations));
 
     // testing find out weight examples
     // const neuhof = (await getFirstStationForSearch('Neuhof (Kr Fulda)')).weight;
