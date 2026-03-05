@@ -104,7 +104,6 @@ export function replenishNextStationPromiseCache(
 	for (let i = 0; i < missing; i++) {
 		// random number between 1 and 1000 hopefully no collisions in this range
 		const randomCacheId = Math.floor(Math.random() * 1000);
-		console.log('replenishing cache ' + i);
 		stationDelayInfoPromiseCache.set(
 			randomCacheId,
 			nextStationDelay(stationMap, usedCityCodesCache, disqualifiedCityCodesCache)
