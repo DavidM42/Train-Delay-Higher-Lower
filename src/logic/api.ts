@@ -1,5 +1,12 @@
+import { createClient } from '@motis-project/motis-fptf-client';
+// import {profile as compatProfile} from '@motis-project/motis-fptf-client/p/compat/index.js'
+
 const isTESTMODE = false;
-const BASE_URL = 'https://v5.db.transport.rest';
+
+// TODO domain
+const userAgent = 'train-delay-higher-lower'
+// const client = createClient(compatProfile, userAgent)
+const client = createClient(userAgent)
 
 /*
 Not needed anymore
@@ -15,37 +22,36 @@ function delayCalc(when: string, plannedWhen: string) {
 */
 
 async function getDepartures(evaStation: number, duration: number  = 30, when?: Date) {
-    // TODO more parameters?
-    const url = new URL(`${BASE_URL}/stop/${evaStation}/departures`);
-    
+    const opts = {} as any;
+
     if (duration) {
-        url.searchParams.set('duration', duration.toString());
+        opts.duration = duration;
     }
 
     if (when && !isNaN(when.getTime())) {
-        url.searchParams.set('when', when.toISOString());
+        opts.when = when;
     }
 
     // cap results to same value always
-    url.searchParams.set('results', '200');
+    opts.results = 200;
     
-    return (await fetch(url.href)).json();
+    return await client.departures(evaStation, opts);
 }
 
 async function getArrivals(evaStation: number, duration: number = 30, when?: Date) {
-    // TODO more parameters?
-    const url = new URL(`${BASE_URL}/stops/${evaStation}/arrivals`);
-    
+    const opts = {} as any;
+
     if (duration) {
-        url.searchParams.set('duration', duration.toString());
+        opts.duration = duration;
     }
+
     if (when && !isNaN(when.getTime())) {
-        url.searchParams.set('when', when.toISOString());
+        opts.when = when;
     }
 
     // cap results to same value always
-    url.searchParams.set('results', '200');
-    return (await fetch(url.href)).json();
+    opts.results = 200;
+    return await client.arrivals(evaStation, opts)
 }
 
 async function getTotalArrivalDelay(evaStation: number, duration?: number, when?: Date) {
@@ -115,4 +121,4 @@ async function getMeanDepartureDelay(evaStation: number, duration?: number, when
 }
 
 
-export { getDepartures, getArrivals, getTotalArrivalDelay, getMeanArrivalDelay, getMeanDepartureDelay };
+export { getArrivals, getDepartures, getMeanArrivalDelay, getMeanDepartureDelay, getTotalArrivalDelay };

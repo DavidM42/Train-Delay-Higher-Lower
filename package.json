@@ -11,6 +11,7 @@
     "stations": "STATION_PHOTO_API_KEY=$(grep STATION_PHOTO_API_KEY keys.env | cut -d '=' -f2) npm run stations:ci"
   },
   "devDependencies": {
+    "@motis-project/motis-fptf-client": "^6.4.0",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
