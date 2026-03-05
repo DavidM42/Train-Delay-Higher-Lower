@@ -1,6 +1,10 @@
 <script lang="ts">
 	import type { DelayInfo } from "../typing/types";
-	export let station: DelayInfo;
+	interface Props {
+		station: DelayInfo;
+	}
+
+	let { station }: Props = $props();
 </script>
 
 <page

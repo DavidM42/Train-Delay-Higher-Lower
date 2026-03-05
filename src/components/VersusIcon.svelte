@@ -1,14 +1,18 @@
 <script lang="ts">
-	export let win: boolean;
-	export let loss: boolean;
+	interface Props {
+		win: boolean;
+		loss: boolean;
+	}
+
+	let { win, loss }: Props = $props();
 </script>
 
 <page>
 	<div class:win class:loss class={`versus-block`}>
 		<div class="versus-block__text">vs</div>
-		<div class="versus-block__overlay" />
-		<div class="versus-block__icon" />
-		<div />
+		<div class="versus-block__overlay"></div>
+		<div class="versus-block__icon"></div>
+		<div></div>
 	</div>
 </page>
 

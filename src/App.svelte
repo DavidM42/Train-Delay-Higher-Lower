@@ -2,16 +2,16 @@
 	import StationSelector from "./logic/StationSelector";
 	import Highscore from "./logic/Highscore";
 
-	let lastStation: DelayInfo;
+	let lastStation: DelayInfo = $state();
 
-	let newStation: DelayInfo;
+	let newStation: DelayInfo = $state();
 
-	let justStarted = true;
-	let failed = false;
-	let score = 0;
-	let win = false;
-	let loss = false;
-	let chooseActive = true;
+	let justStarted = $state(true);
+	let failed = $state(false);
+	let score = $state(0);
+	let win = $state(false);
+	let loss = $state(false);
+	let chooseActive = $state(true);
 	let selector: StationSelector = null;
 
 	import Intro from "./components/Intro.svelte";

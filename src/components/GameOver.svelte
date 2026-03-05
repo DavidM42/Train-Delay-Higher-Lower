@@ -1,5 +1,12 @@
 <script lang="ts">
-	export let score: number;
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
+	interface Props {
+		score: number;
+	}
+
+	let { score }: Props = $props();
 </script>
 
 <page>
@@ -15,7 +22,7 @@
 	{/if}
 
 	<div class="inlineContainer">
-		<button on:click>Neustart!</button>
+		<button onclick={bubble('click')}>Neustart!</button>
 	</div>
 </page>
 

@@ -5,10 +5,14 @@
 	import { Decision } from "../typing/types";
 	import type { DelayInfo } from "../typing/types";
 
-	export let station: DelayInfo;
-	export let chooseActive: boolean;
 
 	import { createEventDispatcher } from "svelte";
+	interface Props {
+		station: DelayInfo;
+		chooseActive: boolean;
+	}
+
+	let { station, chooseActive = $bindable() }: Props = $props();
 	const dispatch = createEventDispatcher();
 
 	function higher(node) {
@@ -48,8 +52,8 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 				easing: expoOut,
 				baseScale: 0.5,
 			}} -->
-			<button on:click={higher}>Higher</button>
-			<button on:click={lower}>Lower</button>
+			<button onclick={higher}>Higher</button>
+			<button onclick={lower}>Lower</button>
 		</div>
 	{/if}
 

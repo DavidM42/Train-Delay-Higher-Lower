@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let justStarted: boolean;
+	interface Props {
+		justStarted: boolean;
+	}
+
+	let { justStarted = $bindable() }: Props = $props();
 
 	function start(node) {
 		justStarted = false;
@@ -11,7 +15,7 @@
 	<h2>Welcher Bahnhof sammelt zurzeit mehr Ankunfts-Verspätungs-Minuten?</h2>
 	<span>Eine spassige Method die Echtzeit Fahrplandaten der Bahn zu nutzen</span>
 	<div class="inlineContainer">
-		<button on:click={start}>Go</button>
+		<button onclick={start}>Go</button>
 	</div>
 </page>
 
