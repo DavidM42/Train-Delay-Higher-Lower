@@ -30,7 +30,7 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 	{#if !chooseActive}
 		<div
 			class="term-volume"
-			transition:fadeScale={{
+			transition:fadeScale|global={{
 				delay: 75,
 				duration: 500,
 				easing: expoIn,
@@ -42,7 +42,7 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 		</div>
 	{:else}
 		<div class="buttonContainer">
-			<!-- 			transition:fadeScale={{
+			<!-- 			transition:fadeScale|global={{
 				delay: 75,
 				duration: 500,
 				easing: expoOut,
