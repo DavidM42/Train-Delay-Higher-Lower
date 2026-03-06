@@ -117,11 +117,11 @@ url('station-images/{station.photoName}') no-repeat center center fixed;"
 			position: absolute;
 			left: 50%;
 			transform: translateX(-50%);
-			bottom: 15%;
+			bottom: 3%;
 		}
 
 		h1 {
-			font-size: 2em;
+			font-size: 1.5em;
 		}
 	}
 
